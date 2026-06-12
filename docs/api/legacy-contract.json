@@ -1,0 +1,292 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "《反着来》后端 API 契约",
+    "version": "1.0.0",
+    "description": "前端与后端之间的接口定义。任何改动必须更新此文件并通知全队。",
+    "contact": {
+      "name": "殷文才（后端/架构）",
+      "email": "24251052@bjtu.edu.cn"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000",
+      "description": "本地开发环境（V2）"
+    },
+    {
+      "url": "https://your-deploy-url.com",
+      "description": "线上环境（待填）"
+    }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "健康检查",
+        "description": "前端启动时调用一次，确认后端在线。",
+        "responses": {
+          "200": {
+            "description": "后端正常",
+            "content": {
+              "application/json": {
+                "example": { "status": "ok", "version": "1.0.0" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/generate-question": {
+      "post": {
+        "summary": "获取一道题目",
+        "description": "AI 生成题目，失败则降级到本地题库。前端每道题开始前调用。",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "difficulty": {
+                    "type": "integer",
+                    "description": "难度等级 1-5，对应 30 题中的阶段",
+                    "minimum": 1,
+                    "maximum": 5
+                  },
+                  "exclude_types": {
+                    "type": "array",
+                    "items": { "type": "string" },
+                    "description": "最近 3 题的类型，避免连续重复"
+                  }
+                },
+                "required": ["difficulty"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功返回题目",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": ["direction", "color", "action", "double_neg", "combo"],
+                      "description": "题目类型"
+                    },
+                    "instruction_text": {
+                      "type": "string",
+                      "description": "展示给玩家的指令文字，如「向左滑」"
+                    },
+                    "correct_action": {
+                      "type": "string",
+                      "description": "正确答案的动作标识，如 swipe_right / tap_blue / tap_any"
+                    },
+                    "options": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "label": { "type": "string", "description": "按钮文字" },
+                          "action": { "type": "string", "description": "对应动作" },
+                          "color": { "type": "string", "description": "按钮颜色（hex），颜色类题型用" }
+                        }
+                      }
+                    },
+                    "time_limit_ms": {
+                      "type": "integer",
+                      "description": "倒计时毫秒数，方向类 800，其他 1000"
+                    },
+                    "source": {
+                      "type": "string",
+                      "enum": ["ai", "fallback"],
+                      "description": "本题来源，便于调试"
+                    }
+                  },
+                  "required": ["type", "instruction_text", "correct_action", "options", "time_limit_ms"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "服务端错误（前端应降级到本地题库）"
+          }
+        }
+      }
+    },
+    "/api/analyze-performance": {
+      "post": {
+        "summary": "分析玩家表现",
+        "description": "游戏结束后调用，传入答题记录，返回四维雷达图数据和弱点分析。",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "answers": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "question_type": { "type": "string" },
+                        "correct": { "type": "boolean" },
+                        "reaction_time_ms": { "type": "number" }
+                      }
+                    }
+                  }
+                },
+                "required": ["answers"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功返回分析结果",
+            "content": {
+              "application/json": {
+                "example": {
+                  "radar": {
+                    "reaction_speed": 82,
+                    "color_discrimination": 75,
+                    "antisocial_thinking": 68,
+                    "pressure_resistance": 90
+                  },
+                  "weakness": "antisocial_thinking",
+                  "recommended_difficulty": 3,
+                  "comment": "你在反直觉思维上还有提升空间，继续加油！"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/generate-share-text": {
+      "post": {
+        "summary": "生成分享文案",
+        "description": "结算后调用，生成个性化分享到抖音的文案。",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "score": { "type": "integer", "description": "答对题数（0-30）" },
+                  "max_combo": { "type": "integer", "description": "最长连击" },
+                  "fastest_reaction_ms": { "type": "number", "description": "最快反应毫秒" },
+                  "weakness": { "type": "string", "description": "弱点维度（可选）" }
+                },
+                "required": ["score", "max_combo"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功返回分享文案",
+            "content": {
+              "application/json": {
+                "example": {
+                  "text": "我在《反着来》里答对了 27 题，最快反应 320ms！反直觉思维你是认真的吗？来挑战我 👉 输入代码 A1B2C3",
+                  "hashtags": ["反着来", "反直觉挑战", "反应力测试", "抖音AI创变者"],
+                  "share_image_prompt": "生成一张带有分数 27 和连击 12 的炫酷分享卡片"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/create-challenge": {
+      "post": {
+        "summary": "创建挑战",
+        "description": "玩家完成游戏后，将其题目和成绩保存，生成一个 6 位挑战码发给好友。",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "player_name": { "type": "string", "description": "挑战发起者昵称" },
+                  "score": { "type": "integer" },
+                  "questions": {
+                    "type": "array",
+                    "description": "本局题目列表（前端传过来，后端存下来）"
+                  }
+                },
+                "required": ["player_name", "score", "questions"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功创建挑战",
+            "content": {
+              "application/json": {
+                "example": {
+                  "challenge_code": "A1B2C3",
+                  "share_url": "https://douyin.com/share/A1B2C3"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/challenge/{code}": {
+      "get": {
+        "summary": "获取挑战信息",
+        "description": "好友输入挑战码后，前端调此接口获取原始题目和发起者成绩。",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "pattern": "^[A-Z0-9]{6}$" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功返回挑战信息",
+            "content": {
+              "application/json": {
+                "example": {
+                  "player_name": "小殷",
+                  "score": 27,
+                  "questions": [],
+                  "created_at": "2026-06-06T11:00:00Z"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "挑战码不存在或已过期"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Question": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string", "enum": ["direction", "color", "action", "double_neg", "combo"] },
+          "instruction_text": { "type": "string" },
+          "correct_action": { "type": "string" },
+          "options": { "type": "array", "items": { "type": "object" } },
+          "time_limit_ms": { "type": "integer" }
+        }
+      }
+    }
+  }
+}

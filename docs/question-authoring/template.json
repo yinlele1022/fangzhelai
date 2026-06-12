@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "game": "反着来",
+    "version": "1.0.0",
+    "total_questions_target": 200,
+    "filled": 18,
+    "last_updated": "2026-06-06"
+  },
+  "questions": [
+    {
+      "type": "color",
+      "instruction_text": "点红色的",
+      "correct_action": "tap_blue",
+      "options": [
+        { "label": "红", "action": "tap_red", "color": "#FF0000" },
+        { "label": "蓝", "action": "tap_blue", "color": "#0000FF" }
+      ],
+      "time_limit_ms": 1000,
+      "source": "fallback"
+    },
+    {
+      "type": "direction",
+      "instruction_text": "向左滑",
+      "correct_action": "swipe_right",
+      "options": [
+        { "label": "左滑", "action": "swipe_left", "direction": "←" },
+        { "label": "右滑", "action": "swipe_right", "direction": "→" }
+      ],
+      "time_limit_ms": 800,
+      "source": "fallback"
+    },
+    {
+      "type": "action",
+      "instruction_text": "别动",
+      "correct_action": "tap_any",
+      "options": [
+        { "label": "别动", "action": "tap_any" }
+      ],
+      "time_limit_ms": 1200,
+      "source": "fallback"
+    },
+    {
+      "type": "double_neg",
+      "instruction_text": "不要不点",
+      "correct_action": "tap_any",
+      "options": [
+        { "label": "不要不点", "action": "tap_any" }
+      ],
+      "time_limit_ms": 1200,
+      "source": "fallback"
+    },
+    {
+      "type": "combo",
+      "instruction_text": "不要点红色的",
+      "correct_action": "tap_blue",
+      "options": [
+        { "label": "红", "action": "tap_red", "color": "#FF0000" },
+        { "label": "蓝", "action": "tap_blue", "color": "#0000FF" }
+      ],
+      "time_limit_ms": 900,
+      "source": "fallback"
+    }
+  ],
+  "template_note": "以上5条是示例。请按此格式继续填充至200条。注意：instruction_text 要有创意，不要重复；correct_action 必须与 options 中某个 action 完全匹配；time_limit_ms 建议：color=1000, direction=800, action=1200, double_neg=1200, combo=900。"
+}

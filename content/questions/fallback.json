@@ -1,0 +1,275 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "generated_at": "2026-06-06",
+    "total_count": 20,
+    "description": "《反着来》本地降级题库。AI API 不可用时由此文件提供题目。当前每个题型 4 条。",
+    "how_to_add": "在此文件 questions 数组中添加新对象，字段必须与模板一致。添加后更新 total_count。"
+  },
+  "questions": [
+    {
+      "type": "direction",
+      "instruction_text": "向左滑",
+      "correct_action": "swipe_right",
+      "options": [
+        { "label": "向左", "action": "swipe_left" },
+        { "label": "向右", "action": "swipe_right" }
+      ],
+      "time_limit_ms": 800,
+      "difficulty": 1,
+      "tip": "指令说向左，正确操作是向右"
+    },
+    {
+      "type": "direction",
+      "instruction_text": "向右滑",
+      "correct_action": "swipe_left",
+      "options": [
+        { "label": "向左", "action": "swipe_left" },
+        { "label": "向右", "action": "swipe_right" }
+      ],
+      "time_limit_ms": 800,
+      "difficulty": 1,
+      "tip": "指令说向右，正确操作是向左"
+    },
+    {
+      "type": "direction",
+      "instruction_text": "不要向右滑",
+      "correct_action": "swipe_left",
+      "options": [
+        { "label": "向左", "action": "swipe_left" },
+        { "label": "向右", "action": "swipe_right" }
+      ],
+      "time_limit_ms": 800,
+      "difficulty": 3,
+      "tip": "「不要向右滑」= 要做向左滑"
+    },
+    {
+      "type": "color",
+      "instruction_text": "点红色的",
+      "correct_action": "tap_blue",
+      "options": [
+        { "label": "红", "action": "tap_red", "color": "#EE4444" },
+        { "label": "蓝", "action": "tap_blue", "color": "#4444DD" }
+      ],
+      "time_limit_ms": 1000,
+      "difficulty": 1,
+      "tip": "指令说点红色的，正确是点蓝色的"
+    },
+    {
+      "type": "color",
+      "instruction_text": "点蓝色的",
+      "correct_action": "tap_red",
+      "options": [
+        { "label": "红", "action": "tap_red", "color": "#EE4444" },
+        { "label": "蓝", "action": "tap_blue", "color": "#4444DD" }
+      ],
+      "time_limit_ms": 1000,
+      "difficulty": 1,
+      "tip": "指令说点蓝色的，正确是点红色的"
+    },
+    {
+      "type": "color",
+      "instruction_text": "不要点蓝色的",
+      "correct_action": "tap_red",
+      "options": [
+        { "label": "红", "action": "tap_red", "color": "#EE4444" },
+        { "label": "蓝", "action": "tap_blue", "color": "#4444DD" }
+      ],
+      "time_limit_ms": 1000,
+      "difficulty": 3,
+      "tip": "「不要点蓝色」= 点红色"
+    },
+    {
+      "type": "color",
+      "instruction_text": "点绿色的",
+      "correct_action": "tap_yellow",
+      "options": [
+        { "label": "绿", "action": "tap_green", "color": "#44AA44" },
+        { "label": "黄", "action": "tap_yellow", "color": "#DDDD44" }
+      ],
+      "time_limit_ms": 1000,
+      "difficulty": 2,
+      "tip": "指令说点绿色的，正确是点黄色的"
+    },
+    {
+      "type": "action",
+      "instruction_text": "别动",
+      "correct_action": "tap_any",
+      "options": [
+        { "label": "点我", "action": "tap_any", "color": "#AAAAAA" }
+      ],
+      "time_limit_ms": 1000,
+      "difficulty": 2,
+      "tip": "「别动」= 要立刻点按钮"
+    },
+    {
+      "type": "action",
+      "instruction_text": "立刻点",
+      "correct_action": "tap_any",
+      "options": [
+        { "label": "点我", "action": "tap_any", "color": "#AAAAAA" }
+      ],
+      "time_limit_ms": 600,
+      "difficulty": 2,
+      "tip": "「立刻点」= 不要点（反着来）"
+    },
+    {
+      "type": "action",
+      "instruction_text": "不要点",
+      "correct_action": "tap_any",
+      "options": [
+        { "label": "点我", "action": "tap_any", "color": "#AAAAAA" }
+      ],
+      "time_limit_ms": 1000,
+      "difficulty": 3,
+      "tip": "「不要点」= 要立刻点"
+    },
+    {
+      "type": "double_neg",
+      "instruction_text": "不要不点",
+      "correct_action": "tap_any",
+      "options": [
+        { "label": "点我", "action": "tap_any", "color": "#AAAAAA" }
+      ],
+      "time_limit_ms": 1000,
+      "difficulty": 4,
+      "tip": "「不要不点」= 双重否定 = 要立刻点"
+    },
+    {
+      "type": "double_neg",
+      "instruction_text": "别不点",
+      "correct_action": "tap_any",
+      "options": [
+        { "label": "点我", "action": "tap_any", "color": "#AAAAAA" }
+      ],
+      "time_limit_ms": 800,
+      "difficulty": 4,
+      "tip": "「别不点」= 双重否定 = 要立刻点"
+    },
+    {
+      "type": "combo",
+      "instruction_text": "不要点红色的",
+      "correct_action": "tap_blue",
+      "options": [
+        { "label": "红", "action": "tap_red", "color": "#EE4444" },
+        { "label": "蓝", "action": "tap_blue", "color": "#4444DD" }
+      ],
+      "time_limit_ms": 800,
+      "difficulty": 3,
+      "tip": "「不要点红色」= 点蓝色"
+    },
+    {
+      "type": "combo",
+      "instruction_text": "别向左滑",
+      "correct_action": "swipe_right",
+      "options": [
+        { "label": "向左", "action": "swipe_left" },
+        { "label": "向右", "action": "swipe_right" }
+      ],
+      "time_limit_ms": 800,
+      "difficulty": 3,
+      "tip": "「别向左滑」= 向右滑"
+    },
+    {
+      "type": "direction",
+      "instruction_text": "向左滑",
+      "correct_action": "swipe_right",
+      "options": [
+        { "label": "向左", "action": "swipe_left" },
+        { "label": "向右", "action": "swipe_right" }
+      ],
+      "time_limit_ms": 700,
+      "difficulty": 2,
+      "tip": "反着来，说左滑就右滑"
+    },
+    {
+      "type": "direction",
+      "instruction_text": "向右滑",
+      "correct_action": "swipe_left",
+      "options": [
+        { "label": "向左", "action": "swipe_left" },
+        { "label": "向右", "action": "swipe_right" }
+      ],
+      "time_limit_ms": 700,
+      "difficulty": 2,
+      "tip": "反着来，说右滑就左滑"
+    },
+    {
+      "type": "color",
+      "instruction_text": "点黄色的",
+      "correct_action": "tap_green",
+      "options": [
+        { "label": "黄", "action": "tap_yellow", "color": "#DDDD44" },
+        { "label": "绿", "action": "tap_green", "color": "#44AA44" }
+      ],
+      "time_limit_ms": 900,
+      "difficulty": 2,
+      "tip": "指令说点黄色，正确是点绿色"
+    },
+    {
+      "type": "color",
+      "instruction_text": "不要点绿色的",
+      "correct_action": "tap_yellow",
+      "options": [
+        { "label": "黄", "action": "tap_yellow", "color": "#DDDD44" },
+        { "label": "绿", "action": "tap_green", "color": "#44AA44" }
+      ],
+      "time_limit_ms": 900,
+      "difficulty": 3,
+      "tip": "「不要点绿色」= 点黄色"
+    },
+    {
+      "type": "action",
+      "instruction_text": "站着别动",
+      "correct_action": "tap_any",
+      "options": [
+        { "label": "点我", "action": "tap_any", "color": "#AAAAAA" }
+      ],
+      "time_limit_ms": 1000,
+      "difficulty": 2,
+      "tip": "「站着别动」= 要立刻点"
+    },
+    {
+      "type": "double_neg",
+      "instruction_text": "不要不碰",
+      "correct_action": "tap_any",
+      "options": [
+        { "label": "点我", "action": "tap_any", "color": "#AAAAAA" }
+      ],
+      "time_limit_ms": 900,
+      "difficulty": 5,
+      "tip": "「不要不碰」= 双重否定 = 要碰 = 立刻点"
+    }
+  ],
+  "type_distribution": {
+    "direction": {
+      "count": 4,
+      "description": "方向类：指令说向左/右，正确操作是反方向"
+    },
+    "color": {
+      "count": 4,
+      "description": "颜色类：指令说点某颜色，正确是点另一个颜色"
+    },
+    "action": {
+      "count": 4,
+      "description": "动作类：指令说别动/立刻点，正确是反着来"
+    },
+    "double_neg": {
+      "count": 4,
+      "description": "双重否定：双重否定 = 肯定，难度最高"
+    },
+    "combo": {
+      "count": 4,
+      "description": "组合类：否定词 + 方向/颜色，需要两步推理"
+    }
+  },
+  "notes_for_editor": [
+    "1. 每个题型至少填 8 条，总共 200+ 条",
+    "2. correct_action 必须与 options 中某个 action 完全匹配",
+    "3. difficulty: 1=最简单，5=最难（双重否定建议 4-5）",
+    "4. time_limit_ms: 方向类 700-800，其他 800-1200，越难越短",
+    "5. options 数组长度：方向类=2，颜色类=2，动作类=1",
+    "6. 动作类和双重否定只有 1 个按钮，options 长度为 1",
+    "7. 填完后用 JSON 校验器检查格式，确保没有 trailing comma"
+  ]
+}

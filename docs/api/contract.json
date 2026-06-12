@@ -1,0 +1,117 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Opposite Game API",
+    "version": "2.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8888"
+    }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health check",
+        "responses": {
+          "200": {
+            "description": "Service status"
+          }
+        }
+      }
+    },
+    "/api/generate-question": {
+      "post": {
+        "summary": "Generate or select a question",
+        "responses": {
+          "200": {
+            "description": "Question"
+          }
+        }
+      }
+    },
+    "/api/analyze-performance": {
+      "post": {
+        "summary": "Analyze answer history",
+        "responses": {
+          "200": {
+            "description": "Performance profile"
+          }
+        }
+      }
+    },
+    "/api/generate-share-text": {
+      "post": {
+        "summary": "Generate share text",
+        "responses": {
+          "200": {
+            "description": "Share text and hashtags"
+          }
+        }
+      }
+    },
+    "/api/create-challenge": {
+      "post": {
+        "summary": "Create a challenge",
+        "responses": {
+          "200": {
+            "description": "Challenge code"
+          }
+        }
+      }
+    },
+    "/api/challenge/{code}": {
+      "get": {
+        "summary": "Read a challenge",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Challenge"
+          },
+          "404": {
+            "description": "Unknown challenge"
+          }
+        }
+      }
+    },
+    "/api/leaderboard/submit": {
+      "post": {
+        "summary": "Submit a score",
+        "responses": {
+          "200": {
+            "description": "Rank and leaderboard size"
+          }
+        }
+      }
+    },
+    "/api/leaderboard/top": {
+      "get": {
+        "summary": "Read top scores",
+        "responses": {
+          "200": {
+            "description": "Leaderboard"
+          }
+        }
+      }
+    },
+    "/api/daily-challenge": {
+      "get": {
+        "summary": "Read the daily challenge seed",
+        "responses": {
+          "200": {
+            "description": "Daily challenge metadata"
+          }
+        }
+      }
+    }
+  }
+}

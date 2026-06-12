@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Opposite Game Question Pool",
+  "type": "object",
+  "required": ["meta", "questions"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["game", "difficulty", "count"],
+      "properties": {
+        "game": { "const": "反着来" },
+        "difficulty": { "type": "string" },
+        "count": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "prompt", "correctAction"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "type": { "type": "string", "minLength": 1 },
+          "prompt": { "type": "string", "minLength": 1 },
+          "correctAction": { "type": "string", "minLength": 1 },
+          "options": { "type": ["array", "null"] }
+        }
+      }
+    }
+  }
+}
