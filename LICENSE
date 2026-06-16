@@ -1,21 +1,36 @@
-MIT License
+All Rights Reserved
 
-Copyright (c) 2026 殷文才
+Copyright (c) 2026 殷文才 (Yin Wencai)
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+-------------------------------------------------------------------------------
+                    知识产权保护声明
+-------------------------------------------------------------------------------
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+本软件及其相关文档（"软件"）的所有权利归版权所有者保留。
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+禁止行为（未经版权所有者明确的书面许可）：
+
+  1. 商业使用 — 不得将本软件的全部或部分代码用于任何商业目的，
+     包括但不限于：商业产品、商业服务、SaaS 平台、付费功能。
+
+  2. 核心代码复制 — 不得复制、修改、合并、发布、分发本软件的
+     核心功能代码（包括但不限于：后端架构、游戏机制、AI 题目
+     生成逻辑、WebSocket 实时匹配算法）。
+
+  3. 衍生作品分发 — 不得将本软件的整体架构或核心功能作为其他
+     项目的基础进行分发或公开。
+
+允许行为（无需许可）：
+
+  - 个人学习、研究目的下的代码阅读和参考。
+  - Fork 仓库用于代码审阅（仅限个人用途，禁止公开发布修改版本）。
+
+免责声明：
+
+本软件按"现状"提供，不作任何明示或暗示的保证，包括但不限于对
+适销性、特定用途适用性和非侵权的保证。在任何情况下，版权所有
+者均不对因使用本软件而产生的任何索赔、损害或其他责任负责。
+
+-------------------------------------------------------------------------------
+
+若需获取商用授权，请联系：24251052@bjtu.edu.cn
